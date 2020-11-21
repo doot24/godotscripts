@@ -16,7 +16,7 @@ for i in `seq 3`; do cd ..; done
 if [ $TARGET == "debug" ] 
 then 
   echo -e "\e[1;33m building debug version\e[0m"
-  scons p=android android_arch=$ARCH -j$THREADS target=$TARGET deprecated=no $modules
+  scons p=android android_arch=$ARCH tools=no -j$THREADS target=$TARGET deprecated=no $modules
   
   cd platform/android/java
   ./gradlew generateGodotTemplates
