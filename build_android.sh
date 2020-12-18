@@ -3,7 +3,7 @@
 read -p "target (release/debug): " TARGET
 read -p "architecture (armv7/arm64v8): " ARCH
 read -p "threads: " THREADS
-read -p "optimize for (size/speed):" OPTIMIZE
+#read -p "optimize for (size/speed):" OPTIMIZE
 read -p "modules:" MODULEARG
 
 modules=$(<$MODULEARG)
@@ -22,7 +22,7 @@ then
   ./gradlew generateGodotTemplates
 else
   echo -e "\e[1;33m building release version\e[0m"
-  scons p=android android_arch=$ARCH tools=no -j$THREADS use_lto=yes debug_symbols=no target=$TARGET $modules
+  scons p=android android_arch=$ARCH tools=no -j$THREADS use_lto=yes debug_symbols=no target=$TARGET deprecated=no $modules
   
   cd platform/android/java
   ./gradlew generateGodotTemplates
